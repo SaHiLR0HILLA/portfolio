@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sahil Rohilla | Full Stack Web Developer</title>
+    <meta name="description" content="Portfolio of Sahil Rohilla, a full stack web developer skilled in PHP, Laravel, CodeIgniter, Drupal, REST APIs, MySQL, Redis, and Solr.">
+    <style>
+        :root {
+            --ink: #101827;
+            --text: #263142;
+            --muted: #65738a;
+            --line: #d8e0eb;
+            --paper: #f7f9fc;
+            --white: #ffffff;
+            --green: #0f766e;
+            --blue: #2563eb;
+            --coral: #ef5a47;
+            --yellow: #f6b73c;
+            --shadow: 0 24px 70px rgba(16, 24, 39, .14);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(15, 118, 110, .16), transparent 28rem),
+                radial-gradient(circle at 88% 12%, rgba(239, 90, 71, .14), transparent 26rem),
+                linear-gradient(90deg, rgba(16, 24, 39, .04) 1px, transparent 1px),
+                linear-gradient(rgba(16, 24, 39, .04) 1px, transparent 1px),
+                #fbfcff;
+            background-size: auto, auto, 42px 42px, 42px 42px, auto;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .nav {
+            position: sticky;
+            top: 14px;
+            z-index: 20;
+            width: min(1180px, calc(100% - 32px));
+            margin: 14px auto 0;
+            border: 1px solid rgba(216, 224, 235, .92);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .88);
+            box-shadow: 0 18px 54px rgba(16, 24, 39, .08);
+            backdrop-filter: blur(22px);
+        }
+
+        .nav-inner {
+            min-height: 68px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            min-width: max-content;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            color: white;
+            background:
+                linear-gradient(135deg, rgba(15,118,110,.96), rgba(37,99,235,.92), rgba(239,90,71,.92)),
+                repeating-linear-gradient(45deg, rgba(255,255,255,.22) 0 2px, transparent 2px 9px);
+            box-shadow: 0 14px 32px rgba(37, 99, 235, .24);
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px;
+            border: 1px solid rgba(216, 224, 235, .92);
+            border-radius: 10px;
+            background: rgba(247, 249, 252, .9);
+        }
+
+        .nav-links a {
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: var(--ink);
+        }
+
+        .btn {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 18px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-weight: 900;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-dark {
+            color: white;
+            background: var(--ink);
+            box-shadow: 0 18px 40px rgba(16, 24, 39, .22);
+        }
+
+        .btn-line {
+            color: var(--ink);
+            background: white;
+            border-color: var(--line);
+        }
+
+        .nav-cta {
+            min-height: 42px;
+            padding: 0 14px;
+            color: white;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            box-shadow: 0 14px 30px rgba(37, 99, 235, .2);
+        }
+
+        .hero {
+            min-height: calc(100vh - 96px);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr);
+            align-items: center;
+            gap: 48px;
+            padding: 72px 0 64px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 12px;
+            border: 1px solid rgba(15, 118, 110, .25);
+            border-radius: 10px;
+            color: #0d5f59;
+            background: rgba(232, 247, 244, .9);
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99px;
+            background: #16a085;
+            box-shadow: 0 0 0 6px rgba(22, 160, 133, .14);
+        }
+
+        h1, h2, h3, p { margin-top: 0; }
+
+        h1 {
+            max-width: 800px;
+            margin: 20px 0 18px;
+            color: var(--ink);
+            font-size: clamp(46px, 7vw, 88px);
+            line-height: .92;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, var(--green), var(--blue), var(--coral));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .lead {
+            max-width: 710px;
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .hero-actions,
+        .contact-row,
+        .stack-showcase,
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-row { margin-top: 26px; }
+
+        .contact-card {
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 0 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .84);
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .icon-box {
+            width: 24px;
+            height: 24px;
+            display: grid;
+            place-items: center;
+            border-radius: 7px;
+            color: white;
+            background: var(--ink);
+            font-size: 11px;
+        }
+
+        .stack-showcase {
+            max-width: 700px;
+            margin-top: 26px;
+        }
+
+        .stack-badge {
+            position: relative;
+            overflow: hidden;
+            padding: 9px 12px;
+            border: 1px solid rgba(16, 24, 39, .08);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .86);
+            box-shadow: 0 10px 28px rgba(16, 24, 39, .06);
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .stack-badge::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--green), var(--blue), var(--coral));
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .dashboard-shell {
+            position: relative;
+            overflow: hidden;
+            padding: 18px;
+            border: 1px solid rgba(216, 224, 235, .82);
+            border-radius: 12px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.66)),
+                radial-gradient(circle at 16% 12%, rgba(22,160,133,.18), transparent 18rem),
+                radial-gradient(circle at 88% 84%, rgba(239,90,71,.16), transparent 18rem);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-panel,
+        .console-panel,
+        .metric-card,
+        .hero-orbit {
+            border-radius: 10px;
+        }
+
+        .profile-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 26px;
+            color: white;
+            background:
+                linear-gradient(135deg, rgba(16, 24, 39, .97), rgba(31, 41, 55, .96)),
+                linear-gradient(45deg, rgba(22, 160, 133, .4), rgba(239, 90, 71, .4));
+        }
+
+        .profile-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(135deg, black, transparent 68%);
+        }
+
+        .profile-panel > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 98px;
+            height: 98px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(22,160,133,.9), rgba(239,90,71,.88));
+            font-size: 38px;
+            font-weight: 900;
+        }
+
+        .profile-panel h2 {
+            margin: 18px 0 8px;
+            font-size: 31px;
+            line-height: 1.05;
+        }
+
+        .profile-panel p {
+            max-width: 430px;
+            color: rgba(255,255,255,.72);
+            margin-bottom: 22px;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .mini-card {
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 10px;
+            background: rgba(255,255,255,.08);
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .mini-card span {
+            color: rgba(255,255,255,.68);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .metric-card {
+            position: absolute;
+            right: -10px;
+            top: 70px;
+            width: 190px;
+            padding: 16px;
+            border: 1px solid rgba(216, 224, 235, .9);
+            background: white;
+            box-shadow: 0 20px 44px rgba(16, 24, 39, .12);
+        }
+
+        .metric-card strong {
+            display: block;
+            color: var(--ink);
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .metric-card span,
+        .hero-orbit span {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .progress {
+            height: 8px;
+            margin-top: 12px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #edf2f7;
+        }
+
+        .progress b {
+            display: block;
+            width: 98%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--yellow), var(--coral));
+        }
+
+        .hero-orbit {
+            position: absolute;
+            left: -18px;
+            bottom: 96px;
+            width: 180px;
+            padding: 14px;
+            border: 1px solid rgba(216, 224, 235, .9);
+            background: white;
+            box-shadow: 0 22px 48px rgba(16, 24, 39, .12);
+        }
+
+        .hero-orbit strong {
+            display: block;
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.15;
+        }
+
+        .orbit-icons {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .orbit-icons i {
+            width: 24px;
+            height: 24px;
+            display: grid;
+            place-items: center;
+            border-radius: 7px;
+            color: white;
+            background: var(--ink);
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 900;
+        }
+
+        .console-panel {
+            margin-top: 16px;
+            overflow: hidden;
+            background: #0b1020;
+            color: #cbd5e1;
+        }
+
+        .console-top {
+            height: 42px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 14px;
+            background: #111827;
+            border-bottom: 1px solid rgba(255,255,255,.09);
+        }
+
+        .console-top span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .console-top span:nth-child(1) { background: var(--coral); }
+        .console-top span:nth-child(2) { background: var(--yellow); }
+        .console-top span:nth-child(3) { background: #16a085; }
+
+        .code-lines {
+            overflow-x: auto;
+            padding: 18px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .code-lines div { white-space: nowrap; }
+        .code-lines b { color: #67e8f9; }
+        .code-lines i { color: #fbbf24; font-style: normal; }
+
+        section { padding: 78px 0; }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(260px, .55fr);
+            align-items: end;
+            gap: 32px;
+            margin-bottom: 28px;
+        }
+
+        .section-kicker {
+            margin-bottom: 8px;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        h2 {
+            margin-bottom: 0;
+            color: var(--ink);
+            font-size: clamp(30px, 4vw, 50px);
+            line-height: 1.06;
+        }
+
+        .section-head p,
+        .card p,
+        .flow-step span {
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(255,255,255,.92);
+            box-shadow: 0 18px 54px rgba(16, 24, 39, .07);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(37, 99, 235, .26);
+            box-shadow: 0 24px 70px rgba(16, 24, 39, .12);
+        }
+
+        .stat-card,
+        .service-card,
+        .skill-card,
+        .project-card,
+        .timeline-card,
+        .info-card {
+            padding: 24px;
+        }
+
+        .stat-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-size: 38px;
+            line-height: 1;
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green), var(--yellow), var(--coral));
+        }
+
+        .skill-meter {
+            height: 9px;
+            margin: 16px 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #e8edf3;
+        }
+
+        .skill-meter span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--blue), var(--green));
+        }
+
+        .tag-row { margin-top: 14px; }
+
+        .tag {
+            padding: 7px 10px;
+            border: 1px solid #cce6df;
+            border-radius: 8px;
+            color: #0f4d49;
+            background: #ebf8f5;
+            font-size: 13px;
+            font-weight: 850;
+        }
+
+        .projects-wrap {
+            display: grid;
+            gap: 22px;
+        }
+
+        .project-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+            gap: 24px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.96), rgba(247,250,252,.94)),
+                radial-gradient(circle at top right, rgba(239, 90, 71, .18), transparent 18rem);
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 6px;
+            background: linear-gradient(180deg, var(--green), var(--blue), var(--coral));
+        }
+
+        .project-label {
+            display: inline-flex;
+            margin-bottom: 14px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            color: white;
+            background: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .flow-step {
+            min-height: 144px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.86), rgba(247,248,251,.94)),
+                radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 9rem);
+        }
+
+        .flow-step strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-size: 15px;
+        }
+
+        .dark-band {
+            color: white;
+            background:
+                linear-gradient(135deg, rgba(16, 24, 39, .98), rgba(30, 41, 59, .96)),
+                repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 1px, transparent 1px 16px);
+        }
+
+        .dark-band h2,
+        .dark-band h3 { color: white; }
+
+        .dark-band .section-head p,
+        .dark-band li { color: rgba(255,255,255,.72); }
+
+        .dark-band .card {
+            background: rgba(255,255,255,.07);
+            border-color: rgba(255,255,255,.13);
+            box-shadow: none;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px;
+        }
+
+        .timeline-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+
+        .company {
+            color: #7dd3fc;
+            font-weight: 900;
+        }
+
+        .period {
+            flex: 0 0 auto;
+            padding: 7px 10px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 8px;
+            color: rgba(255,255,255,.82);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .clean-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .clean-list li + li { margin-top: 8px; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 18px;
+        }
+
+        .education-item + .education-item {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .education-item strong {
+            display: block;
+            color: var(--ink);
+        }
+
+        .education-item span {
+            color: var(--coral);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .contact-section { padding-bottom: 44px; }
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 24px;
+            padding: 34px;
+            border-radius: 12px;
+            color: white;
+            background: linear-gradient(135deg, var(--green), var(--blue) 55%, var(--coral));
+            box-shadow: var(--shadow);
+        }
+
+        .contact-box h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            margin-bottom: 0;
+            color: rgba(255,255,255,.78);
+        }
+
+        .contact-box .btn {
+            color: var(--ink);
+            background: white;
+        }
+
+        footer {
+            padding: 24px 0 36px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .section-head,
+            .project-card,
+            .info-grid,
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 48px;
+            }
+
+            .metric-card,
+            .hero-orbit {
+                position: static;
+                width: 100%;
+                margin-top: 16px;
+            }
+
+            .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .nav-links a { padding: 8px 9px; }
+        }
+
+        @media (max-width: 720px) {
+            .shell { width: min(100% - 22px, 1180px); }
+
+            .nav {
+                top: 8px;
+                width: min(100% - 18px, 1180px);
+                margin-top: 8px;
+            }
+
+            .nav-links,
+            .nav-cta { display: none; }
+
+            .nav-inner {
+                min-height: 62px;
+                gap: 10px;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .mini-grid,
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            section {
+                padding: 48px 0;
+            }
+
+            h1 { font-size: clamp(42px, 13vw, 58px); }
+            .lead { font-size: 17px; }
+
+            .contact-row .contact-card,
+            .hero-actions .btn,
+            .contact-box .btn {
+                width: 100%;
+            }
+
+            .dashboard-shell { padding: 10px; }
+            .profile-panel,
+            .contact-box { padding: 24px; }
+            .avatar {
+                width: 84px;
+                height: 84px;
+                font-size: 30px;
+            }
+            .profile-panel h2 { font-size: 26px; }
+            .code-lines { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="#top" aria-label="Sahil Rohilla home">
+                <span class="brand-mark">SR</span>
+                <span>Sahil Rohilla</span>
+            </a>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a class="btn nav-cta" href="mailto:sahilrohilla144@gmail.com">Hire Me</a>
+        </div>
+    </nav>
+
+    <main id="top">
+        <header class="shell hero">
+            <div class="hero-copy-panel reveal">
+                <span class="pill"><span class="status-dot"></span> Available for full stack work</span>
+                <h1>Hi, I am Sahil Rohilla. I build <span>fast, reliable web products</span>.</h1>
+                <p class="lead">
+                    Software Developer with 4+ years of hands-on experience in PHP, Laravel, CodeIgniter, Drupal,
+                    APIs, MySQL optimization, CRM systems, healthcare platforms, and production support.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-dark" href="#projects">See Project Work</a>
+                    <a class="btn btn-line" href="mailto:sahilrohilla144@gmail.com">Send Email</a>
+                </div>
+                <div class="contact-row">
+                    <a class="contact-card" href="mailto:sahilrohilla144@gmail.com"><span class="icon-box">@</span>sahilrohilla144@gmail.com</a>
+                    <a class="contact-card" href="tel:+918527041339"><span class="icon-box">T</span>+91-8527041339</a>
+                    <span class="contact-card"><span class="icon-box">IN</span>India</span>
+                </div>
+                <div class="stack-showcase" aria-label="Core technology stack">
+                    <span class="stack-badge">PHP</span>
+                    <span class="stack-badge">Laravel</span>
+                    <span class="stack-badge">CodeIgniter</span>
+                    <span class="stack-badge">Drupal</span>
+                    <span class="stack-badge">MySQL</span>
+                    <span class="stack-badge">REST APIs</span>
+                    <span class="stack-badge">Redis</span>
+                    <span class="stack-badge">Solr</span>
+                </div>
+            </div>
+
+            <div class="hero-visual reveal">
+                <div class="dashboard-shell">
+                    <div class="profile-panel">
+                        <div class="avatar">SR</div>
+                        <h2>Full Stack Web Developer</h2>
+                        <p>Focused on clean backend logic, useful admin tools, scalable database work, and interfaces teams can use daily.</p>
+                        <div class="mini-grid">
+                            <div class="mini-card">
+                                <strong>4+</strong>
+                                <span>Years building production systems</span>
+                            </div>
+                            <div class="mini-card">
+                                <strong>15+</strong>
+                                <span>Web apps deployed and maintained</span>
+                            </div>
+                            <div class="mini-card">
+                                <strong>2</strong>
+                                <span>Junior developers mentored</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <strong>98%</strong>
+                        <span>Code quality focus</span>
+                        <div class="progress"><b></b></div>
+                    </div>
+                    <div class="hero-orbit">
+                        <strong>PHP ecosystem</strong>
+                        <span>Laravel, CI, Drupal, APIs</span>
+                        <div class="orbit-icons">
+                            <i>PHP</i>
+                            <i>LA</i>
+                            <i>CI</i>
+                            <i>DR</i>
+                        </div>
+                    </div>
+                    <div class="console-panel" aria-label="Portfolio visual code sample">
+                        <div class="console-top"><span></span><span></span><span></span></div>
+                        <div class="code-lines">
+                            <div><b>$developer</b> = <i>"Sahil Rohilla"</i>;</div>
+                            <div><b>$stack</b> = [PHP, Laravel, CodeIgniter, Drupal];</div>
+                            <div><b>$focus</b> = CRM + APIs + MySQL;</div>
+                            <div><b>deploy</b>(clean_code, performance);</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="shell reveal">
+            <div class="grid grid-3">
+                <article class="card stat-card">
+                    <strong>4+</strong>
+                    <p>Years building production systems</p>
+                </article>
+                <article class="card stat-card">
+                    <strong>15+</strong>
+                    <p>Web apps deployed and maintained</p>
+                </article>
+                <article class="card stat-card">
+                    <strong>2</strong>
+                    <p>Junior developers mentored</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="work" class="shell reveal">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">What I Deliver</div>
+                    <h2>Useful systems, not just good-looking screens.</h2>
+                </div>
+                <p>I work on the complete lifecycle: understanding requirements, designing modules, writing code, testing, deployment, and post-launch improvements.</p>
+            </div>
+            <div class="grid grid-4">
+                <article class="card service-card">
+                    <h3>Custom CRM Modules</h3>
+                    <p>Lead workflows, dashboards, permissions, follow-ups, reports, and automation.</p>
+                </article>
+                <article class="card service-card">
+                    <h3>Laravel, CI & Drupal Builds</h3>
+                    <p>Full modules, admin panels, content systems, migrations, custom entities, and APIs.</p>
+                </article>
+                <article class="card service-card">
+                    <h3>API Integrations</h3>
+                    <p>REST APIs, third-party services, WhatsApp flows, Voice AI, and internal tooling.</p>
+                </article>
+                <article class="card service-card">
+                    <h3>Performance Fixes</h3>
+                    <p>Query tuning, production debugging, stability improvements, and scalable patterns.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills" class="shell reveal">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Skills</div>
+                    <h2>Technical toolkit for production-ready builds.</h2>
+                </div>
+                <p>Backend-first strength with frontend, database, search, and deployment experience to ship complete features.</p>
+            </div>
+            <div class="grid grid-4">
+                <article class="card skill-card">
+                    <h3>Backend Engineering</h3>
+                    <div class="skill-meter"><span style="width: 94%"></span></div>
+                    <div class="tag-row">
+                        <span class="tag">PHP</span>
+                        <span class="tag">Laravel</span>
+                        <span class="tag">CodeIgniter</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                </article>
+                <article class="card skill-card">
+                    <h3>Frameworks & CMS</h3>
+                    <div class="skill-meter"><span style="width: 91%"></span></div>
+                    <div class="tag-row">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">CodeIgniter</span>
+                        <span class="tag">Drupal 8/9/10</span>
+                        <span class="tag">Custom Modules</span>
+                    </div>
+                </article>
+                <article class="card skill-card">
+                    <h3>Database & Search</h3>
+                    <div class="skill-meter"><span style="width: 88%"></span></div>
+                    <div class="tag-row">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Optimization</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">Apache Solr</span>
+                    </div>
+                </article>
+                <article class="card skill-card">
+                    <h3>Frontend Delivery</h3>
+                    <div class="skill-meter"><span style="width: 82%"></span></div>
+                    <div class="tag-row">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">jQuery</span>
+                        <span class="tag">AJAX</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="shell reveal">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Projects</div>
+                    <h2>Two start-to-end project stories.</h2>
+                </div>
+                <p>These project links are placeholders. Replace `#` with the live URLs when you are ready.</p>
+            </div>
+            <div class="projects-wrap">
+                <article class="card project-card">
+                    <div>
+                        <span class="project-label">Medical Tourism Platform</span>
+                        <h3>My-Medical-Tour</h3>
+                        <p>A comprehensive medical tourism platform connecting international patients with hospitals, doctors, and treatment packages. Developed custom workflows for enquiries, lead management, hospital onboarding, patient coordination, and automated communications.</p>
+                        <div class="tag-row">
+                            <span class="tag">PHP</span>
+                            <span class="tag">Laravel</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">AJAX</span>
+                            <span class="tag">REST APIs</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <a class="btn btn-line" href="#">Open Project Link</a>
+                        </div>
+                    </div>
+                    <div class="flow-grid">
+                        <div class="flow-step">
+                            <strong>Analysis</strong>
+                            <span>Gathered business requirements, mapped patient journeys, treatment workflows, and user roles.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Development</strong>
+                            <span>Built modules for hospital management, doctor profiles, treatment packages, enquiry handling, and lead tracking.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Integration</strong>
+                            <span>Integrated third-party APIs, notifications, and automated communication systems.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Deployment</strong>
+                            <span>Performed testing, optimization, production deployment, and continuous feature enhancements.</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card project-card">
+                    <div>
+                        <span class="project-label">Multilingual Healthcare Platform</span>
+                        <h3>Med Tour Care</h3>
+                        <p>A multilingual healthcare platform supporting region-specific content across multiple languages through a custom localization system. Developed healthcare directories, enquiry workflows, SEO-friendly language routing, content management, and API integrations.</p>
+                        <div class="tag-row">
+                            <span class="tag">Laravel</span>
+                            <span class="tag">Drupal</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">REST APIs</span>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <a class="btn btn-line" href="#">Open Project Link</a>
+                        </div>
+                    </div>
+                    <div class="flow-grid">
+                        <div class="flow-step">
+                            <strong>Planning</strong>
+                            <span>Designed multilingual architecture, content relationships, URL structures, and international SEO strategy.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Development</strong>
+                            <span>Built custom language management, translated content mapping, enquiry forms, hospital listings, and doctor directories.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Localization</strong>
+                            <span>Implemented language-specific URLs, metadata management, content synchronization, and manual translation workflows.</span>
+                        </div>
+                        <div class="flow-step">
+                            <strong>Optimization</strong>
+                            <span>Enhanced performance, search experience, multilingual SEO, and supported ongoing platform improvements.</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" class="dark-band">
+            <div class="shell reveal">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker">Experience</div>
+                        <h2>Professional work with real production responsibility.</h2>
+                    </div>
+                    <p>Experience across Laravel, CodeIgniter, Drupal, CRM modules, database optimization, API work, automation, debugging, mentoring, and live support.</p>
+                </div>
+                <div class="timeline">
+                    <article class="card timeline-card">
+                        <div class="timeline-top">
+                            <div>
+                                <h3>Software Developer</h3>
+                                <div class="company">Vaidam Health Private Limited</div>
+                            </div>
+                            <span class="period">June 2023 - Present</span>
+                        </div>
+                        <ul class="clean-list">
+                            <li>Designed and developed custom CRM modules using PHP, Laravel, and CodeIgniter.</li>
+                            <li>Maintained Custom CRM, Connect Panel, vaidam.com, and medijourney.co.in for high-traffic usage.</li>
+                            <li>Resolved critical production issues and improved platform stability.</li>
+                            <li>Optimized MySQL queries and database performance for faster response times.</li>
+                            <li>Developed Voice AI Agent and WhatsApp Automation System using Node.js.</li>
+                            <li>Managed projects including Vaidam Health, Medijourney, Cancer Rounds, GS Medical Ae, Truskope, Swiss Health Clinic CH, Primcare BKK, and Lifeline Turkey.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card timeline-card">
+                        <div class="timeline-top">
+                            <div>
+                                <h3>Associate Software Developer</h3>
+                                <div class="company">OpenSense Labs Private Limited</div>
+                            </div>
+                            <span class="period">April 2022 - June 2023</span>
+                        </div>
+                        <ul class="clean-list">
+                            <li>Developed and maintained 6+ Drupal 8, 9, and 10 projects.</li>
+                            <li>Built custom modules, custom entities, APIs, and headless Drupal integrations.</li>
+                            <li>Led data migration initiatives with data integrity and zero-downtime planning.</li>
+                            <li>Worked on Carbon Check, OpenSense Labs Rebuild, Clear Plus, ICT, and Leevcb.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="shell reveal">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Background</div>
+                    <h2>Education, achievements, and working style.</h2>
+                </div>
+                <p>Practical engineering mindset, clean code habits, and steady collaboration with teams and stakeholders.</p>
+            </div>
+            <div class="info-grid">
+                <article class="card info-card">
+                    <h3>Education</h3>
+                    <div class="education-item">
+                        <strong>Bachelor of Technology (B.Tech)</strong>
+                        <span>August 2018 - August 2021</span>
+                        <p>Ganga Institute of Technology & Management, Kablana, Haryana</p>
+                    </div>
+                    <div class="education-item">
+                        <strong>Diploma in Engineering</strong>
+                        <span>August 2013 - August 2016</span>
+                        <p>Chotu Ram Rural Institute of Technology, Jind, Haryana</p>
+                    </div>
+                </article>
+                <article class="card info-card">
+                    <h3>Highlights</h3>
+                    <ul class="clean-list">
+                        <li>Successfully deployed and maintained 15+ web applications in production environments.</li>
+                        <li>Achieved 98% code quality score through best practices and code review standards.</li>
+                        <li>Strong hands-on experience across PHP, Laravel, CodeIgniter, and Drupal 8, 9, and 10.</li>
+                        <li>Good understanding of OOPS concepts, design patterns, and software architecture.</li>
+                        <li>Languages: English and Hindi. Soft skills: problem-solving, collaboration, communication, time management, and adaptability.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="shell contact-section reveal">
+            <div class="contact-box">
+                <div>
+                    <h2>Need a developer who can own the work from start to launch?</h2>
+                    <p>Let us discuss Laravel, CodeIgniter, Drupal, CRM modules, APIs, automation, database performance, or full stack web development.</p>
+                </div>
+                <a class="btn" href="mailto:sahilrohilla144@gmail.com">Contact Sahil</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <p>Declaration: I hereby declare that the above information is true to the best of my knowledge and belief.</p>
+        <p>Copyright 2026 Sahil Rohilla. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14 });
+
+        reveals.forEach((item) => observer.observe(item));
+    </script>
+</body>
+</html>
