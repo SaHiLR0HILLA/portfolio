@@ -154,10 +154,14 @@
         .hero {
             min-height: calc(100vh - 96px);
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr);
+            grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr);
             align-items: center;
             gap: 48px;
             padding: 72px 0 64px;
+        }
+
+        .hero > * {
+            min-width: 0;
         }
 
         .pill {
@@ -189,7 +193,7 @@
             max-width: 800px;
             margin: 20px 0 18px;
             color: var(--ink);
-            font-size: clamp(46px, 7vw, 88px);
+            font-size: clamp(46px, 6vw, 78px);
             line-height: .92;
         }
 
@@ -276,6 +280,9 @@
         .dashboard-shell {
             position: relative;
             overflow: hidden;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
             padding: 18px;
             border: 1px solid rgba(216, 224, 235, .82);
             border-radius: 12px;
@@ -295,6 +302,7 @@
 
         .profile-panel {
             position: relative;
+            grid-column: 1 / -1;
             overflow: hidden;
             padding: 26px;
             color: white;
@@ -369,10 +377,7 @@
         }
 
         .metric-card {
-            position: absolute;
-            right: -10px;
-            top: 70px;
-            width: 190px;
+            min-width: 0;
             padding: 16px;
             border: 1px solid rgba(216, 224, 235, .9);
             background: white;
@@ -409,10 +414,7 @@
         }
 
         .hero-orbit {
-            position: absolute;
-            left: -18px;
-            bottom: 96px;
-            width: 180px;
+            min-width: 0;
             padding: 14px;
             border: 1px solid rgba(216, 224, 235, .9);
             background: white;
@@ -446,7 +448,7 @@
         }
 
         .console-panel {
-            margin-top: 16px;
+            grid-column: 1 / -1;
             overflow: hidden;
             background: #0b1020;
             color: #cbd5e1;
@@ -796,11 +798,13 @@
                 padding-top: 48px;
             }
 
+            .dashboard-shell {
+                grid-template-columns: 1fr;
+            }
+
             .metric-card,
             .hero-orbit {
-                position: static;
                 width: 100%;
-                margin-top: 16px;
             }
 
             .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -911,7 +915,7 @@
                 <div class="dashboard-shell">
                     <div class="profile-panel">
                         <div class="avatar">SR</div>
-                        <h2>Full Stack Web Developer</h2>
+                        <h2 style="color: #ffffff;">Full Stack Web Developer</h2>
                         <p>Focused on clean backend logic, useful admin tools, scalable database work, and interfaces teams can use daily.</p>
                         <div class="mini-grid">
                             <div class="mini-card">
@@ -1204,7 +1208,7 @@
                     <div class="education-item">
                         <strong>Diploma in Engineering</strong>
                         <span>August 2013 - August 2016</span>
-                        <p>Chotu Ram Rural Institute of Technology, Jind, Haryana</p>
+                        <p>Chotu Ram Rural Institute of Technology, New-Delhi</p>
                     </div>
                 </article>
                 <article class="card info-card">
